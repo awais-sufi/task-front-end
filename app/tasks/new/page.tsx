@@ -49,7 +49,7 @@ export default function CreateTaskPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/tasks", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${user.token}`,

@@ -28,7 +28,7 @@ export default function TasksPage() {
     if (!user) {
       router.push("/login");
     } else {
-      fetch("http://localhost:5000/api/tasks", {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks`, {
         headers: { Authorization: `Bearer ${user.token}` },
       })
         .then((res) => res.json())

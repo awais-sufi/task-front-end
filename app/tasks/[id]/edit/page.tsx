@@ -35,11 +35,14 @@ export default function EditTaskPage() {
 
     const fetchTask = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/tasks/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
 
         if (!res.ok) throw new Error("Failed to fetch task");
 
