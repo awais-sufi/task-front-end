@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function RegisterPage() {
-  const { login } = useAuth();
+  const router = useRouter();
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,12 +32,12 @@ export default function RegisterPage() {
       const data = await res.json();
 
       if (res.ok) {
-        login(data.token);
+        router.push("/login"); // ✅ Go to login page after successful registration
       } else {
         setError(data.message || "Registration failed");
       }
     } catch (err) {
-      setError("Network error", err);
+      setError("Network error");
     } finally {
       setLoading(false);
     }
