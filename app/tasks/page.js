@@ -13,9 +13,6 @@ import {
   LogOut,
   PencilLine,
   Trash2,
-  Flame,
-  CircleDot,
-  Circle,
 } from "lucide-react";
 
 export default function TasksPage() {
@@ -28,7 +25,7 @@ export default function TasksPage() {
     if (!user) {
       router.push("/login");
     } else {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks`, {
         headers: { Authorization: `Bearer ${user.token}` },
       })
         .then((res) => res.json())
@@ -50,13 +47,16 @@ export default function TasksPage() {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const text = await res.text();
       try {
@@ -72,32 +72,6 @@ export default function TasksPage() {
     } catch (err) {
       toast.error(err.message || "Delete request failed");
     }
-  };
-
-  // Priority label component
-  const PriorityBadge = ({ priority }) => {
-    let icon = <Circle className="text-gray-400" size={16} />;
-    let label = "Low";
-    let color = "bg-gray-100 text-gray-600";
-
-    if (priority === "high") {
-      icon = <Flame className="text-red-500" size={16} />;
-      label = "High";
-      color = "bg-red-100 text-red-600";
-    } else if (priority === "medium") {
-      icon = <CircleDot className="text-yellow-500" size={16} />;
-      label = "Medium";
-      color = "bg-yellow-100 text-yellow-600";
-    }
-
-    return (
-      <span
-        className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full ${color}`}
-      >
-        {icon}
-        {label}
-      </span>
-    );
   };
 
   return (
@@ -148,7 +122,6 @@ export default function TasksPage() {
                       <h2 className="text-xl font-semibold text-gray-800">
                         {task.title}
                       </h2>
-                      <PriorityBadge priority={task.priority} />
                     </div>
                     <p className="text-sm text-gray-600 mt-1">
                       {task.description || "No description provided."}

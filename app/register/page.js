@@ -21,7 +21,7 @@ export default function RegisterPage() {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -75,7 +75,7 @@ export default function RegisterPage() {
               value={form.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -94,7 +94,7 @@ export default function RegisterPage() {
               value={form.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -113,7 +113,7 @@ export default function RegisterPage() {
               value={form.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 

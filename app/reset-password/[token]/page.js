@@ -20,7 +20,7 @@ export default function ResetPassword() {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/reset-password/${params.token}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password/${params.token}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -68,7 +68,7 @@ export default function ResetPassword() {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
 

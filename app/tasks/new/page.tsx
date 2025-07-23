@@ -51,7 +51,7 @@ export default function CreateTaskPage() {
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -105,7 +105,7 @@ export default function CreateTaskPage() {
               value={form.title}
               onChange={handleChange}
               required
-              className="w-full p-3 border rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-3 border text-black rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
               placeholder="Task title"
             />
           </div>
@@ -152,7 +152,7 @@ export default function CreateTaskPage() {
               type="file"
               name="attachment"
               onChange={handleChange}
-              className="block w-full text-sm text-gray-500
+              className="block w-full text-sm text-black 
                          file:mr-4 file:py-2 file:px-4
                          file:rounded-full file:border-0
                          file:text-sm file:font-semibold
@@ -164,7 +164,7 @@ export default function CreateTaskPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-black py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition"
           >
             <CheckCircle2 size={18} />
             Create Task

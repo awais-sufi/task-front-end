@@ -36,7 +36,7 @@ export default function EditTaskPage() {
     const fetchTask = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/tasks/${id}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/tasks/${id}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -77,14 +77,17 @@ export default function EditTaskPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user?.token}`,
-        },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/tasks/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user?.token}`,
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to update task");
 
@@ -138,7 +141,7 @@ export default function EditTaskPage() {
                 value={form.title}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full p-3 border rounded-xl text-black shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -168,7 +171,7 @@ export default function EditTaskPage() {
                 name="dueDate"
                 value={form.dueDate}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full p-3 border rounded-xl text-black shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
@@ -191,7 +194,7 @@ export default function EditTaskPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-black  py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition"
             >
               <CircleCheck size={18} />
               Update Task
