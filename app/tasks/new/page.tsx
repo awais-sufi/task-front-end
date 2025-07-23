@@ -29,9 +29,11 @@ export default function CreateTaskPage() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const { name, value, files } = e.target as HTMLInputElement;
-    if (name === "attachment") {
-      setForm((prev) => ({ ...prev, attachment: files?.[0] || null }));
+    const { name, value } = e.target;
+
+    if (e.target instanceof HTMLInputElement && e.target.type === "file") {
+      const file = e.target.files?.[0] || null;
+      setForm((prev) => ({ ...prev, [name]: file }));
     } else {
       setForm((prev) => ({ ...prev, [name]: value }));
     }
